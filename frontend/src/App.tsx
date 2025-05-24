@@ -4,6 +4,8 @@ import { DisplayCard } from "./components/InfoTile";
 import type { CardData } from "./types/cardData";
 import { useEffect, useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+
 function App() {
   const [shortlistedIds, setShortlistedIds] = useState<string[]>([]);
   const [showOnlyShortlisted, setShowOnlyShortlisted] = useState(false);
@@ -12,7 +14,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/data');
+        const response = await fetch(`${API_URL}/data`);
         const result = await response.json();
         const transformedData = result.listings.map((item: any) => ({
           ...item,

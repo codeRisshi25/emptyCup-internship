@@ -28,23 +28,21 @@ The application is containerized using Docker, which makes it easy to run withou
 
 ```bash
 # Start all services
+# For Linux/macOS
 sudo docker compose up
 
-# Or run in detached mode (background)
-sudo docker compose up -d
+# For Windows (Command Prompt)
+docker-compose up
+
+# For Windows (PowerShell)
+docker compose up
+
 ```
 
 The application will be available at:
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:8080/data
 
-### Stopping the Application
-
-```bash
-# If running in the foreground, press Ctrl+C
-# If running in detached mode:
-sudo docker compose down
-```
 
 ## Project Structure
 
