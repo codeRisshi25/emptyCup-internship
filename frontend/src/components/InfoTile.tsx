@@ -36,7 +36,9 @@ const getPriceDisplay = (price: number): string => {
 }
 export const DisplayCard = ({ name, rating, description, projects, years, price, phNumbers, isEven }: DisplayCardProps) => {
     const [isShortlisted, setIsShortlisted] = useState(false);
-    const bgColor = isEven ? "bg-white" : "bg-[#FFFCF2]";
+    const bgColor = isEven 
+        ? "bg-white" 
+        : "bg-gradient-to-br from-[#FFFDF5] to-[#FFFCF2]";
     const textColor = "text-gray-700"; 
     const titleColor = "text-black";
     const imageStyles = "text-[#8D4337]";
@@ -46,11 +48,11 @@ export const DisplayCard = ({ name, rating, description, projects, years, price,
         <div className={`flex w-full pl-8 py-5.5 font-Chivo ${bgColor} border-y-1 border-[#efeeeeaa]`}>
             <div className="flex-grow">
                 <h2 className={`text-[1.125rem] font-semibold mb-1 ${titleColor}`}>{name}</h2>
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-4 gap-1">
                     {renderStars(rating)}
                 </div>
-                <p className={`${textColor} mb-6 text-[0.625rem] drop-shadow-lg`}>{description}</p>
-                <div className="flex space-x-10 mb-5">
+                <p className={`${textColor} pr-12 mb-6 text-[0.625rem] drop-shadow-md drop-shadow-gray-400`}>{description}</p>
+                <div className="flex space-x-11 mb-5">
                     <div>
                         <p className={`text-2xl font-bold ${titleColor} text-center`}>{projects}</p>
                         <p className={`${textColor} text-xs`}>Projects</p>
@@ -70,7 +72,7 @@ export const DisplayCard = ({ name, rating, description, projects, years, price,
                     ))}
                 </div>
             </div>
-            <div className="flex flex-col items-center justify-around w-24 ml-4">
+            <div className="flex flex-col items-center justify-between w-25 ml-4 mb-4">
                 <button className={`flex flex-col items-center hover:opacity-75`}>
                     <img src="/arrowDetails.svg" alt="Details" className={`${imageStyles}`} />
                     <p className={`${textStyle}`}>Details</p>
