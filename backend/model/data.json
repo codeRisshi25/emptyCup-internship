@@ -1,0 +1,78 @@
+ 
+  [
+    {
+        "name": "Epic Designs",
+        "rating": 4.5,
+        "description":
+            "Experienced software developer with a passion for building scalable applications.",
+        "projects": 10,
+        "years": 5,
+        "price": 50000,
+        "phNumbers": ["+91 - 984532853", "+91 - 984535853"]
+    },
+    {
+        "name": "Tech Innovators",
+        "rating": 5,
+        "description":
+            "Creative team specializing in web and mobile app development with a focus on user experience.",
+        "projects": 20,
+        "years": 3,
+        "price": 75000,
+        "phNumbers": ["+91 - 984532853", "+91 - 984535853"]
+    },
+    {
+        "name": "CodeCrafters",
+        "rating": 3.5,
+        "description":
+            "Full-stack developers with expertise in modern frameworks and cloud technologies.",
+        "projects": 15,
+        "years": 4,
+        "price": 60000,
+        "phNumbers": ["+91 - 984532853", "+91 - 984535853"]
+    },
+    {
+        "name": "Pixel Perfect Studios",
+        "rating": 4.8,
+        "description": "A collective of UI/UX designers focused on creating intuitive and beautiful digital experiences.",
+        "projects": 120,
+        "years": 7,
+        "price": 65000,
+        "phNumbers": ["+91 - 9876543210", "+91 - 9876543211"]
+    },
+    {
+        "name": "Brand Shapers Inc.",
+        "rating": 4.2,
+        "description": "We craft compelling brand identities and visual strategies that resonate with audiences.",
+        "projects": 75,
+        "years": 6,
+        "price": 55000,
+        "phNumbers": ["+91 - 9988776655"]
+    },
+    {
+        "name": "Motion Mavericks",
+        "rating": 4.9,
+        "description": "Specializing in motion graphics and animation to bring your stories to life.",
+        "projects": 90,
+        "years": 4,
+        "price": 72000,
+        "phNumbers": ["+91 - 9123456789", "+91 - 9123456780"]
+    },
+    {
+        "name": "Illustrate & Create",
+        "rating": 4.0,
+        "description": "Custom illustration and graphic design services for print and digital media.",
+        "projects": 60,
+        "years": 3,
+        "price": 48000,
+        "phNumbers": ["+91 - 9765432109"]
+    },
+    {
+        "name": "The Design Alchemists",
+        "rating": 4.6,
+        "description": "Transforming ideas into impactful designs through innovative thinking and collaboration.",
+        "projects": 150,
+        "years": 8,
+        "price": 80000,
+        "phNumbers": ["+91 - 9654321098", "+91 - 9654321097"]
+    }
+]

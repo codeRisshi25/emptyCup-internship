@@ -1,7 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import db from './config/db.js';
+import { createRequire } from 'module';
 import Listing from './model/Listing.js';
+
+const require = createRequire(import.meta.url);
+const dummyData = require('./model/data.json');
 
 const app = express();
 
@@ -12,6 +16,13 @@ const getDbData = async() => {
     const data = await Listing.find();
     return data;
 }
+const populateDb = async () => {
+    const hasData = await Listing.find();
+    if (hasData.length === 0) {
+        await Listing.insertMany(dummyData);
+    } 
+}
+populateDb()
 
 app.get('/data', async (req,res)=>{
     try {
