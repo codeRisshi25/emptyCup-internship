@@ -9,19 +9,26 @@ app.use(cors());
 const instance = db();
 
 const getDbData = async() => {
-    let listings = [];
-    listings = await Listing.find();
-    console.log(listings);
+    const data = await Listing.find();
+    return data;
 }
 
-
-getDbData();
-
-// app.get('/data', (req,res)=>{
-
-// })
+app.get('/data', async (req,res)=>{
+    try {
+        const listings = await getDbData();
+        res.status(200).json({
+            success: true,
+            listings
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+})
 
 
 app.listen(8080, () => {
-    console.log("server listening on port localhost://8080")
+    console.log("server listening on port http://localhost:8080")
 })
