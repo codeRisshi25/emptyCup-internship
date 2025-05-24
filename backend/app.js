@@ -9,18 +9,35 @@ const dummyData = require('./model/data.json');
 
 const app = express();
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS 
-  ? process.env.ALLOWED_ORIGINS.split(',') 
-  : ['http://localhost:5173', 'https://emptycup-4w4ewzpq0-risshis-projects.vercel.app/'];
-
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://emptycup-rouge.vercel.app',
+  'https://emptycup-risshis-projects.vercel.app',
+  'https://emptycup-coderisshi25-risshis-projects.vercel.app',
+  'https://emptycup-4w4ewzpq0-risshis-projects.vercel.app',
+  'https://emptycup-rouge.vercel.app/',
+  'https://emptycup-risshis-projects.vercel.app/',
+  'https://emptycup-coderisshi25-risshis-projects.vercel.app/',
+  'https://emptycup-4w4ewzpq0-risshis-projects.vercel.app/'
+];
 app.use(cors({
   origin: function(origin, callback) {
+    console.log('Request from origin:', origin);
+    console.log('Allowed origins:', allowedOrigins);
+    
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      const originWithoutSlash = origin.endsWith('/') ? origin.slice(0, -1) : origin;
+      if (allowedOrigins.includes(originWithoutSlash)) {
+        callback(null, true);
+        return;
+      }
+      
       callback(new Error('Not allowed by CORS'));
     }
-  }
+  },
+  credentials: true
 }));
 
 const instance = db();
