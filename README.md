@@ -34,6 +34,15 @@ sudo docker compose up
 sudo docker compose up -d
 ```
 
+```powershell
+# For Windows users
+# Start all services
+docker compose up
+
+# Or run in detached mode (background)
+docker compose up -d
+```
+
 The application will be available at:
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:8080/data
@@ -44,6 +53,8 @@ The application will be available at:
 # If running in the foreground, press Ctrl+C
 # If running in detached mode:
 sudo docker compose down
+docker compose down
+
 ```
 
 ## Project Structure
