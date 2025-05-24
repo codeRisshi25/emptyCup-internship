@@ -11,7 +11,7 @@ const app = express();
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS 
   ? process.env.ALLOWED_ORIGINS.split(',') 
-  : ['http://localhost:5173', 'https://emptycup-rouge.vercel.app/'];
+  : ['http://localhost:5173', 'https://emptycup-4w4ewzpq0-risshis-projects.vercel.app/'];
 
 app.use(cors({
   origin: function(origin, callback) {
