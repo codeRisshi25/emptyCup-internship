@@ -16,13 +16,13 @@ const renderStars = (rating: number) => {
     const stars = [];
 
     for (let i = 0; i < fullStars; i++) {
-        stars.push(<img key={`full-${i}`} src={fullstart} alt="Full Star" className="h-5 w-5" />);
+        stars.push(<img key={`full-${i}`} src={fullstart} alt="Full Star"  />);
     }
     if (halfStar) {
-        stars.push(<img key="half" src={halfstart} alt="Half Star" className="h-5 w-5" />);
+        stars.push(<img key="half" src={halfstart} alt="Half Star" />);
     }
     for (let i = 0; i < emptyStars; i++) {
-        stars.push(<img key={`empty-${i}`} src={emptystar} alt="Empty Star" className="h-5 w-5" />);
+        stars.push(<img key={`empty-${i}`} src={emptystar} alt="Empty Star" />);
     }
     return stars;
 };
@@ -41,30 +41,30 @@ export const DisplayCard = ({ name, rating, description, projects, years, price,
     const textStyle = "text-[#8D4337] text-[0.5rem]";
 
     return (
-        <div className={`flex w-full p-6 ${bgColor}`}>
+        <div className={`flex w-full pl-8 py-5.5 font-Chivo ${bgColor} border-y-1 border-[#efeeeeaa]`}>
             <div className="flex-grow">
-                <h2 className={`text-2xl font-bold mb-2 ${titleColor}`}>{name}</h2>
-                <div className="flex items-center mb-3">
+                <h2 className={`text-[1.125rem] font-semibold mb-1 ${titleColor}`}>{name}</h2>
+                <div className="flex items-center mb-4">
                     {renderStars(rating)}
                 </div>
-                <p className={`${textColor} mb-4 text-sm`}>{description}</p>
-                <div className="flex space-x-8 mb-4">
+                <p className={`${textColor} mb-6 text-[0.625rem] drop-shadow-lg`}>{description}</p>
+                <div className="flex space-x-10 mb-5">
                     <div>
-                        <p className={`text-2xl font-bold ${titleColor}`}>{projects}</p>
+                        <p className={`text-2xl font-bold ${titleColor} text-center`}>{projects}</p>
                         <p className={`${textColor} text-xs`}>Projects</p>
                     </div>
                     <div>
-                        <p className={`text-2xl font-bold ${titleColor}`}>{years}</p>
+                        <p className={`text-2xl font-bold ${titleColor} text-center`}>{years}</p>
                         <p className={`${textColor} text-xs`}>Years</p>
                     </div>
                     <div>
-                        <p className={`text-2xl font-bold ${titleColor}`}>{getPriceDisplay(price)}</p>
+                        <p className={`text-2xl font-bold ${titleColor} text-center`}>{getPriceDisplay(price)}</p>
                         <p className={`${textColor} text-xs`}>Price</p>
                     </div>
                 </div>
-                <div>
+                <div className="flex flex-col mb-2">
                     {phNumbers.map((phone, index) => (
-                        <p key={index} className={`${textColor} text-sm`}>{phone}</p>
+                        <p key={index} className={`${textColor} text-[1rem]`}>{phone}</p>
                     ))}
                 </div>
             </div>

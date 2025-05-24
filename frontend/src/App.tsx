@@ -13,7 +13,7 @@ const cardData: CardData[] = [
 		projects: 10,
 		years: 5,
 		price: 50000,
-		phNumbers: ["123-456-7890", "987-654-3210"],
+		phNumbers: ["+91 - 984532853", "+91 - 984535853"],
 	},
 	{
 		_id: "2",
@@ -24,7 +24,7 @@ const cardData: CardData[] = [
 		projects: 20,
 		years: 3,
 		price: 75000,
-		phNumbers: ["555-123-4567", "555-765-4321"],
+		phNumbers: ["+91 - 984532853", "+91 - 984535853"],
 	},
 	{
 		_id: "3",
@@ -35,13 +35,13 @@ const cardData: CardData[] = [
 		projects: 15,
 		years: 4,
 		price: 60000,
-		phNumbers: ["111-222-3333", "444-555-6666"],
+		phNumbers: ["+91 - 984532853", "+91 - 984535853"],
 	},
 ];
 
 function App() {
 	return (
-		<div className="font-Chivo">
+		<div className="font-[Chivo] ">
 			<NavBar />
 			<Options />
       <div className="flex flex-col">

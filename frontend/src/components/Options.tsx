@@ -6,7 +6,7 @@ import shortlisted from "/shortlisted.svg";
 
 export const Options = () => {
   return (
-    <div className="flex flex-row justify-between w-full p-5">
+    <div className="flex flex-row justify-between w-full pt-6 px-6 pb-1">
       <div className="flex flex-row gap-8">
         <img src={contacts} alt="Contacts" className="mb-4" />
         <img src={gallery} alt="Gallery" className="mb-4" />
