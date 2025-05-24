@@ -2,47 +2,31 @@ import { NavBar } from "./components/NavBar";
 import { Options } from "./components/Options";
 import { DisplayCard } from "./components/InfoTile";
 import type { CardData } from "./types/cardData";
-import { useState } from "react";
-
-const cardData: CardData[] = [
-	{
-		id: "1",
-		name: "Epic Designs",
-		rating: 4.5,
-		description:
-			"Experienced software developer with a passion for building scalable applications.",
-		projects: 10,
-		years: 5,
-		price: 50000,
-		phNumbers: ["+91 - 984532853", "+91 - 984535853"],
-	},
-	{
-		id: "2",
-		name: "Tech Innovators",
-		rating: 5,
-		description:
-			"Creative team specializing in web and mobile app development with a focus on user experience.",
-		projects: 20,
-		years: 3,
-		price: 75000,
-		phNumbers: ["+91 - 984532853", "+91 - 984535853"],
-	},
-	{
-		id: "3",
-		name: "CodeCrafters",
-		rating: 3.5,
-		description:
-			"Full-stack developers with expertise in modern frameworks and cloud technologies.",
-		projects: 15,
-		years: 4,
-		price: 60000,
-		phNumbers: ["+91 - 984532853", "+91 - 984535853"],
-	},
-];
+import { useEffect, useState } from "react";
 
 function App() {
   const [shortlistedIds, setShortlistedIds] = useState<string[]>([]);
   const [showOnlyShortlisted, setShowOnlyShortlisted] = useState(false);
+  const [data, setData] = useState<CardData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/data');
+        const result = await response.json();
+        const transformedData = result.listings.map((item: any) => ({
+          ...item,
+          id: item._id,
+        }));
+        setData(transformedData);
+        console.log("Fetched data:", result.listings);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    
+    fetchData();
+  }, []);
 
   const toggleShortList = (id: string) => {
     setShortlistedIds((prev) =>
@@ -57,9 +41,9 @@ function App() {
     console.log("Filter toggled:", !showOnlyShortlisted);
   }
 
-  const displayCards  = showOnlyShortlisted
-    ? cardData.filter((card) => shortlistedIds.includes(card.id))
-    : cardData;
+  const displayCards = showOnlyShortlisted
+    ? data.filter((card) => shortlistedIds.includes(card.id))
+    : data;
 
 	return (
     <div className="font-[Chivo">
