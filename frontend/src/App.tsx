@@ -2,10 +2,11 @@ import { NavBar } from "./components/NavBar";
 import { Options } from "./components/Options";
 import { DisplayCard } from "./components/InfoTile";
 import type { CardData } from "./types/cardData";
+import { useState } from "react";
 
 const cardData: CardData[] = [
 	{
-		_id: "1",
+		id: "1",
 		name: "Epic Designs",
 		rating: 4.5,
 		description:
@@ -16,7 +17,7 @@ const cardData: CardData[] = [
 		phNumbers: ["+91 - 984532853", "+91 - 984535853"],
 	},
 	{
-		_id: "2",
+		id: "2",
 		name: "Tech Innovators",
 		rating: 5,
 		description:
@@ -27,7 +28,7 @@ const cardData: CardData[] = [
 		phNumbers: ["+91 - 984532853", "+91 - 984535853"],
 	},
 	{
-		_id: "3",
+		id: "3",
 		name: "CodeCrafters",
 		rating: 3.5,
 		description:
@@ -40,23 +41,41 @@ const cardData: CardData[] = [
 ];
 
 function App() {
+  const [shortlistedIds, setShortlistedIds] = useState<string[]>([]);
+  const [showOnlyShortlisted, setShowOnlyShortlisted] = useState(false);
+
+  const toggleShortList = (id: string) => {
+    setShortlistedIds((prev) =>
+      prev.includes(id) 
+      ? prev.filter((prevId) => prevId !== id)
+      : [...prev, id]
+    )
+    console.log("Shortlisted IDs:", shortlistedIds);
+  }
+  const filterToggle = () => {
+    setShowOnlyShortlisted((prev) => !prev);
+    console.log("Filter toggled:", !showOnlyShortlisted);
+  }
+
+  const displayCards  = showOnlyShortlisted
+    ? cardData.filter((card) => shortlistedIds.includes(card.id))
+    : cardData;
+
 	return (
-		<div className="font-[Chivo] ">
-			<NavBar />
-			<Options />
-      <div className="flex flex-col">
-        {cardData.map((card, index) => {
+    <div className="font-[Chivo">
+      <NavBar />
+      <Options 
+    isFilterActive={showOnlyShortlisted}
+    onFilterToggle={filterToggle}
+    />
+      <div className="flex flex-col overflow-hidden">
+        {displayCards.map((card, index) => {
           return (
             <DisplayCard
-              key={card._id}
-              _id={card._id}
-              name={card.name}
-              rating={card.rating}
-              description={card.description}
-              projects={card.projects}
-              years={card.years}
-              price={card.price}
-              phNumbers={card.phNumbers}
+              key={card.id}
+              {...card}
+              isShortlisted={shortlistedIds.includes(card.id)}
+              toggleShortList={toggleShortList}
               isEven={index % 2 !== 0}
             />
           );

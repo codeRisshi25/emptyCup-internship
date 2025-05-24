@@ -1,5 +1,5 @@
 export interface CardData {
-    _id : string;
+    id : string;
     name : string;
     rating : number;
     description : string;

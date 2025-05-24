@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { CardData } from "../types/cardData";
 import fullstart from '/fullstar.svg';
 import halfstart from '/halfstar.svg';
@@ -7,7 +6,10 @@ import shortlisted from '/Vector.svg';
 import shortlist from '/shortlist.svg';
 
 interface DisplayCardProps extends CardData {
+    id: string;
     isEven: boolean;
+    isShortlisted?: boolean;
+    toggleShortList?: (id: string) => void;
 }
 
 const renderStars = (rating: number) => {
@@ -34,8 +36,8 @@ const getPriceDisplay = (price: number): string => {
     if (price < 60000) return "$$";
     return "$$$";
 }
-export const DisplayCard = ({ name, rating, description, projects, years, price, phNumbers, isEven }: DisplayCardProps) => {
-    const [isShortlisted, setIsShortlisted] = useState(false);
+export const DisplayCard = ({ id, name, rating, description, projects, years, price, phNumbers, isEven, isShortlisted, toggleShortList }: DisplayCardProps) => {
+
     const bgColor = isEven 
         ? "bg-white" 
         : "bg-gradient-to-br from-[#FFFDF5] to-[#FFFCF2]";
@@ -44,6 +46,10 @@ export const DisplayCard = ({ name, rating, description, projects, years, price,
     const imageStyles = "text-[#8D4337]";
     const textStyle = "text-[#8D4337] text-[0.5rem]";
 
+    const handleShortlistClick = () => {
+        if (!toggleShortList) return;
+        toggleShortList(id);
+    };
     return (
         <div className={`flex w-full pl-8 py-5.5 font-Chivo ${bgColor} border-y-1 border-[#efeeeeaa]`}>
             <div className="flex-grow">
@@ -52,7 +58,7 @@ export const DisplayCard = ({ name, rating, description, projects, years, price,
                     {renderStars(rating)}
                 </div>
                 <p className={`${textColor} pr-12 mb-6 text-[0.625rem] drop-shadow-md drop-shadow-gray-400`}>{description}</p>
-                <div className="flex space-x-11 mb-5">
+                <div className="flex space-x-10 mb-5">
                     <div>
                         <p className={`text-2xl font-bold ${titleColor} text-center`}>{projects}</p>
                         <p className={`${textColor} text-xs`}>Projects</p>
@@ -83,7 +89,7 @@ export const DisplayCard = ({ name, rating, description, projects, years, price,
                 </button>
                 <button 
                     className={`flex flex-col items-center hover:opacity-75`}
-                    onClick={() => setIsShortlisted(!isShortlisted)}
+                    onClick={handleShortlistClick}
                 >
                     <img 
                         src={isShortlisted ? shortlisted : shortlist} 
