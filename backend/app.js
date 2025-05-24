@@ -9,7 +9,20 @@ const dummyData = require('./model/data.json');
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',') 
+  : ['http://localhost:5173', 'https://emptycup-rouge.vercel.app/'];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
 const instance = db();
 
 const getDbData = async() => {
@@ -40,6 +53,8 @@ app.get('/data', async (req,res)=>{
 })
 
 
-app.listen(8080, () => {
-    console.log("server listening on port http://localhost:8080")
-})
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
