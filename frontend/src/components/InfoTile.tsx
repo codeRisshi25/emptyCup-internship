@@ -1,8 +1,10 @@
+import { useState } from "react";
 import type { CardData } from "../types/cardData";
 import fullstart from '/fullstar.svg';
 import halfstart from '/halfstar.svg';
 import emptystar from '/emptystar.svg';
 import shortlisted from '/Vector.svg';
+import shortlist from '/shortlist.svg';
 
 interface DisplayCardProps extends CardData {
     isEven: boolean;
@@ -32,8 +34,8 @@ const getPriceDisplay = (price: number): string => {
     if (price < 60000) return "$$";
     return "$$$";
 }
-
 export const DisplayCard = ({ name, rating, description, projects, years, price, phNumbers, isEven }: DisplayCardProps) => {
+    const [isShortlisted, setIsShortlisted] = useState(false);
     const bgColor = isEven ? "bg-white" : "bg-[#FFFCF2]";
     const textColor = "text-gray-700"; 
     const titleColor = "text-black";
@@ -77,8 +79,15 @@ export const DisplayCard = ({ name, rating, description, projects, years, price,
                     <img src="/eyeslash.svg" alt="Hide" className={`${imageStyles}`}  />
                     <p className={`${textStyle}`}>Hide</p>
                 </button>
-                <button className={`flex flex-col items-center hover:opacity-75`}>
-                    <img src={shortlisted} alt="Shortlisted" className={`${imageStyles}`}  />
+                <button 
+                    className={`flex flex-col items-center hover:opacity-75`}
+                    onClick={() => setIsShortlisted(!isShortlisted)}
+                >
+                    <img 
+                        src={isShortlisted ? shortlisted : shortlist} 
+                        alt={isShortlisted ? "Shortlisted" : "Shortlist"} 
+                        className={`${imageStyles}`}
+                    />
                     <p className={`${textStyle}`}>Shortlist</p>
                 </button>
                 <button className={`flex flex-col items-center hover:opacity-75`}>
